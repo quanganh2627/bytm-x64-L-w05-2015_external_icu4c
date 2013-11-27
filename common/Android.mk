@@ -155,6 +155,18 @@ include abi/cpp/use_rtti.mk
 include external/stlport/libstlport.mk
 include $(BUILD_SHARED_LIBRARY)
 
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := $(src_files)
+LOCAL_C_INCLUDES := $(c_includes) \
+                    abi/cpp/include
+LOCAL_CFLAGS := $(local_cflags) -DPIC -fPIC
+LOCAL_RTTI_FLAG := -frtti
+LOCAL_SHARED_LIBRARIES += libgabi++ libdl
+LOCAL_LDLIBS += $(local_ldlibs)
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE := libicuuc
+include $(BUILD_STATIC_LIBRARY)
+
 
 #
 # Build for the host.
