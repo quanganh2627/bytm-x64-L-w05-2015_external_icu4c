@@ -183,4 +183,13 @@ ifeq ($(WITH_HOST_DALVIK),true)
     LOCAL_ADDITIONAL_DEPENDENCIES += $(LOCAL_PATH)/Android.mk
     LOCAL_REQUIRED_MODULES += icu-data-host
     include $(BUILD_HOST_SHARED_LIBRARY)
+
+	include $(CLEAR_VARS)
+	LOCAL_SRC_FILES := $(src_files)
+	LOCAL_C_INCLUDES := $(c_includes)
+	LOCAL_CFLAGS := $(local_cflags)
+	LOCAL_LDLIBS += $(local_ldlibs)
+	LOCAL_MODULE_TAGS := optional
+	LOCAL_MODULE := libicuuc-host
+	include $(BUILD_HOST_STATIC_LIBRARY)
 endif
